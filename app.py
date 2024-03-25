@@ -2,7 +2,7 @@ from flask import Flask, redirect, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
-import setup
+
 
 # Load environment variables from the .env file (if present)
 load_dotenv()
@@ -43,8 +43,6 @@ def home():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    """print(request.form["email"])
-            print(request.form)"""
     # request.form creates a special dictionary through which we can access the value of corresponding key
     if request.method == "POST":
         username = request.form["account_name"]
@@ -58,27 +56,22 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             return redirect("/signup/success")
-        return "Passwords do not match"
+        return {"messsage" : "Passwords do not match"}
     return render_template("signup.html")
 
 
 @app.route("/signup/success")
 def success():
     # Fetch and display user data from the database (this is just an example)
-    users = User.query.all()
-    for u in users:
-        print(u)
-    return "success "
-    # return render_template("success.html", users=users)
+    return {"message" : "success"}
+  
 
 
 if __name__ == "__main__":
     try:
         with app.app_context():
-            #setup.create_users(db)
             db.create_all()
             app.run(debug=True)
     except Exception as e:
         print(f"An error occurred: {e}")
 
-        
