@@ -1,6 +1,6 @@
 # Flask User Signup App
 
-A simple user signup application built with Flask, PostgreSQL, and SQLAlchemy.
+A simple flask application which offers user authentication features integrated with a PostgreSQL database. Utilizing SQLAlchemy, it ensures efficient management of data. Robust password encryption and verification mechanisms are implemented. The frontend is crafted with user-centric HTML and CSS templates.
 
 ## Features:
 
